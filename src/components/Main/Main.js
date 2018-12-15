@@ -41,8 +41,8 @@ class Main extends Component {
                                 <TableCell>{project.thumbnail}</TableCell>
                                 <TableCell>{project.name}</TableCell>
                                 <TableCell>{project.description}</TableCell>
-                                <TableCell>{project.website}</TableCell>
-                                <TableCell>{project.github}</TableCell>
+                                <TableCell><a href={project.website} target="_blank">{project.website}</a></TableCell>
+                                <TableCell><a href={project.github} target="_blank">{project.github}</a></TableCell>
                                 <TableCell>{project.date_completed}</TableCell>
                                 <TableCell>{project.built_with}</TableCell>
                             </TableRow>
