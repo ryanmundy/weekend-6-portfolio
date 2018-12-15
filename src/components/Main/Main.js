@@ -14,19 +14,6 @@ class Main extends Component {
 
     render() {
 
-
-        // return (
-        //     <div className="Main">
-        //         <ul>
-        //             {this.props.reduxStore.projects.map(project => {
-        //                 return (
-        //                   <li key={project.id}>{project.name}</li>  
-        //                 );
-        //             })}
-        //         </ul>
-        //         {JSON.stringify(this.props.reduxStore.projects)}
-        //     </div>
-        // );
         return (
             <div className="Main">
                 <table>
@@ -41,6 +28,7 @@ class Main extends Component {
                             <th>Built With</th>
                         </tr>
                     </thead>
+                    <tbody>
                     {this.props.reduxStore.projects.map(project => {
                         return (
                             <tr key={project.id}>
@@ -54,8 +42,8 @@ class Main extends Component {
                             </tr>
                         );
                     })}
+                    </tbody>
                 </table>
-                {JSON.stringify(this.props.reduxStore.projects)}
             </div>
         );
     }
