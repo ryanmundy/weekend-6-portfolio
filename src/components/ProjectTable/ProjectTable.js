@@ -20,8 +20,8 @@ class ProjectTable extends Component {
 
     handleDelete = (id) => {
         console.log('in handleDelete', id);
-        this.props.dispatch({type: 'DELETE_PROJECT', payload: id})
-        
+        this.props.dispatch({ type: 'DELETE_PROJECT', payload: id })
+
     }
 
     render() {
@@ -40,7 +40,7 @@ class ProjectTable extends Component {
                             return (
                                 <TableRow key={project.id} id={project.id}>
                                     <TableCell>{project.name}</TableCell>
-                                    <Button variant="contained" color="secondary" onClick={() =>this.handleDelete(project.id)}>Delete</Button>
+                                    <Button variant="contained" color="secondary" onClick={() => this.handleDelete(project.id)}>Delete</Button>
                                 </TableRow>
                             );
                         })}

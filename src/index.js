@@ -13,11 +13,11 @@ import { takeEvery, call, put as dispatch } from 'redux-saga/effects';
 import axios from 'axios';
 
 //axios call to GET projects off db
-function* fetchProjects(){
+function* fetchProjects() {
     console.log('in fetchProjects');
-    try{
-    const projectList = yield call(axios.get, '/projects');
-    yield dispatch({ type: 'SET_PROJECTS', payload: projectList.data });
+    try {
+        const projectList = yield call(axios.get, '/projects');
+        yield dispatch({ type: 'SET_PROJECTS', payload: projectList.data });
     } catch (error) {
         console.log(error);
         yield alert('Error creating project')
@@ -26,10 +26,10 @@ function* fetchProjects(){
 
 function* addProject(action) {
     console.log('in addProject');
-    try{
-    yield call(axios.post, '/projects', action.payload);
-    yield alert('Successfully created project!')
-    yield dispatch({ type: 'FETCH_PROJECTS'});
+    try {
+        yield call(axios.post, '/projects', action.payload);
+        yield alert('Successfully created project!')
+        yield dispatch({ type: 'FETCH_PROJECTS' });
     } catch (error) {
         console.log(error);
         yield alert('Error creating project')
@@ -91,6 +91,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();

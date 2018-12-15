@@ -7,14 +7,15 @@ router.get('/', (req, res) => {
     const queryText = `SELECT "projects"."id", "projects"."name", "projects"."description",
      "projects"."thumbnail", "projects"."website", "projects"."github",
       "projects"."date_completed", "tags"."built_with"
-  FROM "projects" JOIN "tags" ON "projects"."tag_id"="tags"."id";`;
+  FROM "projects" JOIN "tags" ON "projects"."tag_id"="tags"."id"
+  ORDER by "projects"."name" ASC;`;
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);
             res.sendStatus(200);
         })
         .catch((error) => {
-            console.log(`Error on query ${error}`);
+            console.log(error);
             res.sendStatus(500);
         });
 });//end GET projects
@@ -33,8 +34,8 @@ router.post('/', (req, res) => {
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
-        .catch((err) => {
-            console.log('Error completing SELECT plant query', err);
+        .catch((error) => {
+            console.log(error);
             res.sendStatus(500);
         });
 });//end POST
@@ -46,8 +47,8 @@ router.delete('/:id', (req, res) => {
     pool.query(query, [reqId])
         .then(() => {
             res.sendStatus(200);
-        }).catch(err => {
-            console.log( err);
+        }).catch(error => {
+            console.log(error);
             res.sendStatus(500);
         });
 });//end DELETE

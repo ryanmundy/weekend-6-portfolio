@@ -6,7 +6,9 @@ class App extends Component {
     render() {
         return (
             <div className="Header">
+            <img src="images/RyanMundy2.jpg" height="100"></img>
                 <h1>Ryan Mundy</h1>
+                <h3>Portfolio</h3>
             </div>
         );
     }

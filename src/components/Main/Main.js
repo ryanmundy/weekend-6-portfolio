@@ -21,7 +21,7 @@ class Main extends Component {
 
         return (
             <div className="Main">
-            <h2>My Projects</h2>
+                <h2>My Projects</h2>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -35,19 +35,19 @@ class Main extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {this.props.reduxStore.projects.map(project => {
-                        return (
-                            <TableRow key={project.id}>
-                                <TableCell><img src={project.thumbnail} width="200" alt=''></img></TableCell>
-                                <TableCell>{project.name}</TableCell>
-                                <TableCell>{project.description}</TableCell>
-                                <TableCell><a href={project.website} target="_blank">{project.website}</a></TableCell>
-                                <TableCell><a href={project.github} target="_blank">{project.github}</a></TableCell>
-                                <TableCell>{project.date_completed}</TableCell>
-                                <TableCell>{project.built_with}</TableCell>
-                            </TableRow>
-                        );
-                    })}
+                        {this.props.reduxStore.projects.map(project => {
+                            return (
+                                <TableRow key={project.id}>
+                                    <TableCell><img src={project.thumbnail} width="200" alt=''></img></TableCell>
+                                    <TableCell>{project.name}</TableCell>
+                                    <TableCell>{project.description}</TableCell>
+                                    <TableCell><a href={project.website} target="_blank">{project.website}</a></TableCell>
+                                    <TableCell><a href={project.github} target="_blank">{project.github}</a></TableCell>
+                                    <TableCell>{project.date_completed}</TableCell>
+                                    <TableCell>{project.built_with}</TableCell>
+                                </TableRow>
+                            );
+                        })}
                     </TableBody>
                 </Table>
             </div>
