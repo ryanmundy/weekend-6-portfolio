@@ -9,10 +9,19 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import { takeEvery, call, put as dispatch } from 'redux-saga/effects';
+import axios from 'axios';
+
+//axios call to GET projects off db
+function* fetchProjects(){
+    console.log('in fetchProjects');
+    const projectList = yield call(axios.get, '/projects');
+    yield dispatch({ type: 'SET_PROJECTS', payload: projectList.data });
+}
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery('FETCH_PROJECTS', fetchProjects);
 }
 
 // Create sagaMiddleware
