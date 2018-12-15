@@ -38,7 +38,7 @@ class Main extends Component {
                     {this.props.reduxStore.projects.map(project => {
                         return (
                             <TableRow key={project.id}>
-                                <TableCell>{project.thumbnail}</TableCell>
+                                <TableCell><img src={project.thumbnail} width="200" alt=''></img></TableCell>
                                 <TableCell>{project.name}</TableCell>
                                 <TableCell>{project.description}</TableCell>
                                 <TableCell><a href={project.website} target="_blank">{project.website}</a></TableCell>

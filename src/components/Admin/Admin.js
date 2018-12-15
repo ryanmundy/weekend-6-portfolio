@@ -17,11 +17,11 @@ class Admin extends Component {
                 <Button id="returnHome" variant="contained" color="primary" onClick={this.handleBackClick}>Return Home</Button>
                 <h2>Administrator</h2>
                 <form>
-                    <input placeholder="Name" onChange={this.handleChange} />
-                    <input placeholder="Description" onChange={this.handleChange} />
-                    <input placeholder="Website URL" onChange={this.handleChange} />
-                    <input placeholder="Github URL" onChange={this.handleChange} />
-                    <input placeholder="Completion Date" onChange={this.handleChange} />
+                    <input placeholder="Name" onChange={this.handleChangeFor} />
+                    <input placeholder="Description" onChange={this.handleChangeFor} />
+                    <input placeholder="Website URL" onChange={this.handleChangeFor} />
+                    <input placeholder="Github URL" onChange={this.handleChangeFor} />
+                    <input placeholder="Completion Date" onChange={this.handleChangeFor} />
                     <select id="select" >
                         <option value="React">React</option>
                         <option value="jQuery">jQuery</option>
@@ -32,7 +32,6 @@ class Admin extends Component {
                     </select>
                     <Button variant="contained" color="primary" onClick={this.handleClick}>Add Project</Button>
                 </form>
-                
                 <ProjectTable/>
             </div>
         );
