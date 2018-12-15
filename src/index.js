@@ -19,9 +19,16 @@ function* fetchProjects(){
     yield dispatch({ type: 'SET_PROJECTS', payload: projectList.data });
 }
 
+function* addProject(action) {
+    console.log('in addProject');
+    yield call(axios.post, '/projects', action.payload);
+    yield dispatch({ type: 'FETCH_PROJECTS'});
+}
+
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_PROJECTS', fetchProjects);
+    yield takeEvery('ADD_PROJECT', addProject);
 }
 
 // Create sagaMiddleware

@@ -14,7 +14,6 @@ class App extends Component {
         <Header/>
           <Route path="/" exact component={Main} />
           <Route path="/admin" exact component={Admin} />
-        {/* <Main /> */}
       </div>
       </Router>
     );
