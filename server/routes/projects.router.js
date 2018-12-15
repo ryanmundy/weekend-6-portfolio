@@ -39,4 +39,17 @@ router.post('/', (req, res) => {
         });
 });//end POST
 
+router.delete('/:id', (req, res) => {
+    const reqId = req.params.id;
+    console.log('route id: ', reqId);
+    const query = `DELETE FROM "projects" WHERE id=$1`;
+    pool.query(query, [reqId])
+        .then(() => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log( err);
+            res.sendStatus(500);
+        });
+});//end DELETE
+
 module.exports = router;

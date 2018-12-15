@@ -18,6 +18,12 @@ class ProjectTable extends Component {
         this.props.dispatch({ type: 'FETCH_PROJECTS' });
     }
 
+    handleDelete = (id) => {
+        console.log('in handleDelete', id);
+        this.props.dispatch({type: 'DELETE_PROJECT', payload: id})
+        
+    }
+
     render() {
 
         return (
@@ -32,9 +38,9 @@ class ProjectTable extends Component {
                     <TableBody>
                         {this.props.reduxStore.projects.map(project => {
                             return (
-                                <TableRow key={project.id}>
+                                <TableRow key={project.id} id={project.id}>
                                     <TableCell>{project.name}</TableCell>
-                                    <Button variant="contained" color="secondary">Delete</Button>
+                                    <Button variant="contained" color="secondary" onClick={() =>this.handleDelete(project.id)}>Delete</Button>
                                 </TableRow>
                             );
                         })}

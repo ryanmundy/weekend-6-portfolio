@@ -32,7 +32,6 @@ class Admin extends Component {
         event.preventDefault();
         console.log('this is state', this.state);
         this.props.dispatch({type:'ADD_PROJECT', payload: this.state.newProject})
-        
     }
 
 
@@ -53,6 +52,7 @@ class Admin extends Component {
                     <input placeholder="Github URL" onChange={this.handleChangeFor('github')} />
                     <input placeholder="Completion Date" onChange={this.handleChangeFor('date_completed')} />
                     <select id="select" onChange={this.handleChangeFor('tag_id')}>
+                        <option value="">Select a tag</option>
                         <option value="1">React</option>
                         <option value="2">jQuery</option>
                         <option value="3">Node</option>
