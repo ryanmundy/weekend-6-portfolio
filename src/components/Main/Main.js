@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Main.css';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 class Main extends Component {
 
@@ -16,9 +21,10 @@ class Main extends Component {
 
         return (
             <div className="Main">
-                <table>
-                    <thead>
-                        <tr>
+            <h2>My Projects</h2>
+                <Table>
+                    <TableHead>
+                        <TableRow>
                             <th>Photo</th>
                             <th>Name</th>
                             <th>Description</th>
@@ -26,24 +32,24 @@ class Main extends Component {
                             <th>Github</th>
                             <th>Completed</th>
                             <th>Built With</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                     {this.props.reduxStore.projects.map(project => {
                         return (
-                            <tr key={project.id}>
-                                <td>{project.thumbnail}</td>
-                                <td>{project.name}</td>
-                                <td>{project.description}</td>
-                                <td>{project.website}</td>
-                                <td>{project.github}</td>
-                                <td>{project.date_completed}</td>
-                                <td>{project.built_with}</td>
-                            </tr>
+                            <TableRow key={project.id}>
+                                <TableCell>{project.thumbnail}</TableCell>
+                                <TableCell>{project.name}</TableCell>
+                                <TableCell>{project.description}</TableCell>
+                                <TableCell>{project.website}</TableCell>
+                                <TableCell>{project.github}</TableCell>
+                                <TableCell>{project.date_completed}</TableCell>
+                                <TableCell>{project.built_with}</TableCell>
+                            </TableRow>
                         );
                     })}
-                    </tbody>
-                </table>
+                    </TableBody>
+                </Table>
             </div>
         );
     }
