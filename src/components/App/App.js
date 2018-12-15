@@ -14,6 +14,7 @@ class App extends Component {
           <Header />
           <Route path="/" exact component={Main} />
           <Route path="/admin" exact component={Admin} />
+          <p>© 2018 Ryan Mundy</p>
         </div>
       </Router>
     );
