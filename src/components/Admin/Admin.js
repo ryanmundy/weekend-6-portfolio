@@ -16,9 +16,19 @@ class Admin extends Component {
             github: '',
             date_completed: '',
             tag_id: 1,
-            thumbnail: ''
+            thumbnail: '',
+            built_with: ''
 
         }
+    }
+
+    componentDidMount(){
+        this.getTags();
+        
+    }
+
+    getTags=()=>{
+        this.props.dispatch({ type: 'FETCH_TAGS' });
     }
 
     handleChangeFor = (propertyName) => (event) => {
@@ -37,12 +47,24 @@ class Admin extends Component {
         this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.newProject })
     }
 
+    handleTagClick = event => {
+        event.preventDefault();
+        console.log('this is state', this.state);
+        this.props.dispatch({ type: 'ADD_TAG', payload: this.state.newProject })
+    }
+
 
     handleBackClick = () => {
         this.props.history.push('/');
     }
 
     render() {
+        let tags = this.props.reduxStore.tags.map(tag => {
+            return (
+                <option key={tag.id} value={tag.id}>{tag.built_with}</option>
+            );
+        })
+    
 
         return (
             <div className="Main">
@@ -63,16 +85,16 @@ class Admin extends Component {
                         <TextField id="input" type="date" placeholder="Completion Date" onChange={this.handleChangeFor('date_completed')} />
                         <p>Built With:</p>
                         <select  onChange={this.handleChangeFor('tag_id')}>
-                            <option selected="selected" value="1">React</option>
-                            <option value="2">jQuery</option>
-                            <option value="3">Node</option>
-                            <option value="4">SQL</option>
-                            <option value="5">Redux</option>
-                            <option value="6">HTML</option>
+                        {tags}
                         </select>
                         <br />
                         <Button id="input" variant="contained" color="primary" onClick={this.handleClick}><Add/>Add Project</Button>
                     </form>
+                </div>
+                <div id="newTag">
+                    <h3>Add New Tag</h3>
+                    <TextField id="input" placeholder="New Tag" onChange={this.handleChangeFor('built_with')} />
+                    <Button id="input" variant="contained" color="primary" onClick={this.handleTagClick}><Add />Add Tag</Button>
                 </div>
                 <ProjectTable />
             </div>

@@ -48,6 +48,7 @@ class ProjectTable extends Component {
                         })}
                     </TableBody>
                 </Table>
+                
             </div>
         );
     }
