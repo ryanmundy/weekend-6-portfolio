@@ -48,22 +48,20 @@ class Admin extends Component {
             <div className="Main">
                 <Button id="returnHome" variant="contained" color="primary" onClick={this.handleBackClick}><Home/>Return Home</Button>
                 <h2>Administrator</h2>
-                <h3>Create New Project</h3>
+                
                 <div id="inputDiv">
+                    <h3>Create New Project</h3>
                     <form>
                         <TextField id="input" placeholder="Name" onChange={this.handleChangeFor('name')} />
                         <br />
-                        <TextField id="input" placeholder="Website URL" onChange={this.handleChangeFor('website')} />
-                        <br />
-                        <TextField id="input" placeholder="Github URL" onChange={this.handleChangeFor('github')} />
-                        <br />
-                        <TextField id="input" type="date" placeholder="Completion Date" onChange={this.handleChangeFor('date_completed')} />
-                        <br />
                         <TextField id="input" placeholder="Description" onChange={this.handleChangeFor('description')} />
-                        <br />
+                        <TextField id="input" placeholder="Website URL" onChange={this.handleChangeFor('website')} />
+                        <TextField id="input" placeholder="Github URL" onChange={this.handleChangeFor('github')} />
                         <TextField id="input" placeholder="Image URL" onChange={this.handleChangeFor('thumbnail')} />
                         <br />
-                        <p>Built With</p>
+                        <p>Completed On:</p>
+                        <TextField id="input" type="date" placeholder="Completion Date" onChange={this.handleChangeFor('date_completed')} />
+                        <p>Built With:</p>
                         <select  onChange={this.handleChangeFor('tag_id')}>
                             <option selected="selected" value="1">React</option>
                             <option value="2">jQuery</option>
