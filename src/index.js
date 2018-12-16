@@ -24,6 +24,7 @@ function* fetchProjects() {
     }
 }//end fetchProjects
 
+//POST request to add project
 function* addProject(action) {
     console.log('in addProject');
     try {
@@ -36,6 +37,7 @@ function* addProject(action) {
     }
 }//end addProject
 
+//DELETE request to remove project by id
 function* deleteProject(action) {
     console.log('in deleteProject');
     try {
@@ -48,6 +50,7 @@ function* deleteProject(action) {
     }
 }//end deleteProject
 
+//GET request for current tags
 function* fetchTags() {
     console.log('in fetchTags');
     try {
@@ -59,6 +62,7 @@ function* fetchTags() {
     }
 }//end fetchTags
 
+//POST request for adding new tag
 function* addTag(action) {
     console.log('in addTag');
     try {

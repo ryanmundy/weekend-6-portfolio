@@ -11,14 +11,17 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 class ProjectTable extends Component {
 
+    //gets current projects on page load
     componentDidMount() {
         this.getProjects();
     }
 
+    //gets current projects from db
     getProjects = () => {
         this.props.dispatch({ type: 'FETCH_PROJECTS' });
     }
 
+    //click handler for deleting item by id
     handleDelete = (id) => {
         console.log('in handleDelete', id);
         this.props.dispatch({ type: 'DELETE_PROJECT', payload: id })
@@ -26,10 +29,21 @@ class ProjectTable extends Component {
     }
 
     render() {
+        //maps over project list and creates new table row for each project with delete button
+        let newRow = 
+            this.props.reduxStore.projects.map(project => {
+                return (
+                    <TableRow key={project.id} id={project.id}>
+                        <TableCell>{project.name}</TableCell>
+                        <Button variant="contained" color="secondary" onClick={() => this.handleDelete(project.id)}><DeleteIcon />Delete</Button>
+                    </TableRow>
+                );
+            })
+        
 
         return (
             <div className="tableMain">
-                <h2>Current Projects</h2>
+                <h2>Manage Current Projects</h2>
                 <Table id="adminTable">
                     <TableHead>
                         <TableRow>
@@ -38,17 +52,10 @@ class ProjectTable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.reduxStore.projects.map(project => {
-                            return (
-                                <TableRow key={project.id} id={project.id}>
-                                    <TableCell>{project.name}</TableCell>
-                                    <Button variant="contained" color="secondary" onClick={() => this.handleDelete(project.id)}><DeleteIcon/>Delete</Button>
-                                </TableRow>
-                            );
-                        })}
+                        {newRow}
                     </TableBody>
                 </Table>
-                
+
             </div>
         );
     }

@@ -4,7 +4,7 @@ import './Admin.css';
 import ProjectTable from '../ProjectTable/ProjectTable';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {Home, Add} from '@material-ui/icons';
+import { Home, Add } from '@material-ui/icons';
 
 class Admin extends Component {
 
@@ -15,22 +15,25 @@ class Admin extends Component {
             website: '',
             github: '',
             date_completed: '',
-            tag_id: 1,
+            tag_id: 1,//sets default tag to React
             thumbnail: '',
             built_with: ''
 
         }
     }
 
-    componentDidMount(){
+    //get tags on page load
+    componentDidMount() {
         this.getTags();
-        
+
     }
 
-    getTags=()=>{
+    //get current tags from db
+    getTags = () => {
         this.props.dispatch({ type: 'FETCH_TAGS' });
     }
 
+    //change handler for inputs
     handleChangeFor = (propertyName) => (event) => {
         console.log('in handleChangeFor')
         this.setState({
@@ -41,36 +44,37 @@ class Admin extends Component {
         });
     }
 
+    //click handler for adding project
     handleClick = event => {
         event.preventDefault();
         console.log('this is state', this.state);
         this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.newProject })
     }
 
+    //click handler for adding tag
     handleTagClick = event => {
         event.preventDefault();
         console.log('this is state', this.state);
         this.props.dispatch({ type: 'ADD_TAG', payload: this.state.newProject })
     }
 
-
+    //click handler for returning home
     handleBackClick = () => {
         this.props.history.push('/');
     }
 
     render() {
+        //maps over current tags for dropdown
         let tags = this.props.reduxStore.tags.map(tag => {
             return (
                 <option key={tag.id} value={tag.id}>{tag.built_with}</option>
             );
         })
-    
 
         return (
             <div className="Main">
-                <Button id="returnHome" variant="contained" color="primary" onClick={this.handleBackClick}><Home/>Return Home</Button>
+                <Button id="returnHome" variant="contained" color="primary" onClick={this.handleBackClick}><Home />Return Home</Button>
                 <h2>Administrator</h2>
-                
                 <div id="inputDiv">
                     <h3>Create New Project</h3>
                     <form>
@@ -84,11 +88,11 @@ class Admin extends Component {
                         <p>Completed On:</p>
                         <TextField id="input" type="date" placeholder="Completion Date" onChange={this.handleChangeFor('date_completed')} />
                         <p>Built With:</p>
-                        <select  onChange={this.handleChangeFor('tag_id')}>
-                        {tags}
+                        <select onChange={this.handleChangeFor('tag_id')}>
+                            {tags}
                         </select>
                         <br />
-                        <Button id="input" variant="contained" color="primary" onClick={this.handleClick}><Add/>Add Project</Button>
+                        <Button id="input" variant="contained" color="primary" onClick={this.handleClick}><Add />Add Project</Button>
                     </form>
                 </div>
                 <div id="newTag">

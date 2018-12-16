@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//GET route for current projects
 router.get('/', (req, res) => {
     // return projects
     const queryText = `SELECT "projects"."id", "projects"."name", "projects"."description",
@@ -20,6 +21,8 @@ router.get('/', (req, res) => {
         });
 });//end GET projects
 
+
+//POST route for adding new project
 router.post('/', (req, res) => {
     const newProject = req.body;
     const queryText = `INSERT INTO projects ("name", "description", "website", "github", "date_completed", "tag_id", "thumbnail")
@@ -41,6 +44,7 @@ router.post('/', (req, res) => {
         });
 });//end POST
 
+//DELETE route for removing project by id
 router.delete('/:id', (req, res) => {
     const reqId = req.params.id;
     console.log('route id: ', reqId);
