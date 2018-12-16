@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class ProjectTable extends Component {
 
@@ -27,8 +28,9 @@ class ProjectTable extends Component {
     render() {
 
         return (
-            <div className="Main">
-                <Table>
+            <div className="tableMain">
+                <h2>Current Projects</h2>
+                <Table id="adminTable">
                     <TableHead>
                         <TableRow>
                             <th>Name</th>
@@ -40,7 +42,7 @@ class ProjectTable extends Component {
                             return (
                                 <TableRow key={project.id} id={project.id}>
                                     <TableCell>{project.name}</TableCell>
-                                    <Button variant="contained" color="secondary" onClick={() => this.handleDelete(project.id)}>Delete</Button>
+                                    <Button variant="contained" color="secondary" onClick={() => this.handleDelete(project.id)}><DeleteIcon/>Delete</Button>
                                 </TableRow>
                             );
                         })}

@@ -22,15 +22,16 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const newProject = req.body;
-    const queryText = `INSERT INTO projects ("name", "description", "website", "github", "date_completed", "tag_id")
-                    VALUES ($1, $2, $3, $4, $5, $6)`;
+    const queryText = `INSERT INTO projects ("name", "description", "website", "github", "date_completed", "tag_id", "thumbnail")
+                    VALUES ($1, $2, $3, $4, $5, $6, $7)`;
     const queryValues = [
         newProject.name,
         newProject.description,
         newProject.website,
         newProject.github,
         newProject.date_completed,
-        newProject.tag_id
+        newProject.tag_id,
+        newProject.thumbnail
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })

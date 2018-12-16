@@ -4,7 +4,7 @@ import './Admin.css';
 import ProjectTable from '../ProjectTable/ProjectTable';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
+import {Home, Add} from '@material-ui/icons';
 
 class Admin extends Component {
 
@@ -15,7 +15,8 @@ class Admin extends Component {
             website: '',
             github: '',
             date_completed: '',
-            tag_id: ''
+            tag_id: 1,
+            thumbnail: ''
 
         }
     }
@@ -33,7 +34,7 @@ class Admin extends Component {
     handleClick = event => {
         event.preventDefault();
         console.log('this is state', this.state);
-        this.props.dispatch({type:'ADD_PROJECT', payload: this.state.newProject})
+        this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.newProject })
     }
 
 
@@ -45,32 +46,37 @@ class Admin extends Component {
 
         return (
             <div className="Main">
-                <Button id="returnHome" variant="contained" color="primary" onClick={this.handleBackClick}>Return Home</Button>
+                <Button id="returnHome" variant="contained" color="primary" onClick={this.handleBackClick}><Home/>Return Home</Button>
                 <h2>Administrator</h2>
                 <h3>Create New Project</h3>
                 <div id="inputDiv">
-                <form>
-                    <TextField id="input" placeholder="Name" onChange={this.handleChangeFor('name')} />
-                    <br/>
+                    <form>
+                        <TextField id="input" placeholder="Name" onChange={this.handleChangeFor('name')} />
+                        <br />
                         <TextField id="input" placeholder="Website URL" onChange={this.handleChangeFor('website')} />
+                        <br />
                         <TextField id="input" placeholder="Github URL" onChange={this.handleChangeFor('github')} />
-                    <br/>
+                        <br />
                         <TextField id="input" type="date" placeholder="Completion Date" onChange={this.handleChangeFor('date_completed')} />
-                        <select id="input" id="select" onChange={this.handleChangeFor('tag_id')}>
-                        <option value="">Select a tag</option>
-                        <option value="1">React</option>
-                        <option value="2">jQuery</option>
-                        <option value="3">Node</option>
-                        <option value="4">SQL</option>
-                        <option value="5">Redux</option>
-                        <option value="6">HTML</option>
-                    </select>
-                    <br/>
+                        <br />
                         <TextField id="input" placeholder="Description" onChange={this.handleChangeFor('description')} />
-                        <Button id="input" variant="contained" color="primary" onClick={this.handleClick}>Add Project</Button>
-                </form>
+                        <br />
+                        <TextField id="input" placeholder="Image URL" onChange={this.handleChangeFor('thumbnail')} />
+                        <br />
+                        <p>Built With</p>
+                        <select  onChange={this.handleChangeFor('tag_id')}>
+                            <option selected="selected" value="1">React</option>
+                            <option value="2">jQuery</option>
+                            <option value="3">Node</option>
+                            <option value="4">SQL</option>
+                            <option value="5">Redux</option>
+                            <option value="6">HTML</option>
+                        </select>
+                        <br />
+                        <Button id="input" variant="contained" color="primary" onClick={this.handleClick}><Add/>Add Project</Button>
+                    </form>
                 </div>
-                <ProjectTable/>
+                <ProjectTable />
             </div>
         );
     }
